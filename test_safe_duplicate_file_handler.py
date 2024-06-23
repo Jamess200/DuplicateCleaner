@@ -69,8 +69,8 @@ def format_file_info(file_info):
     return [file_path, file_size, file_ctime, file_mtime]
 
 if __name__ == "__main__":
-    directory_to_scan = "C:\\Users\\James Simmill\\Desktop\\New folder"  # Your test directory
-    backup_directory = "C:\\Users\\James Simmill\\Desktop"  # Separate backup directory
+    directory_to_scan = "C:\\Users\\James Simmill\\Desktop\\TestDup"  # Your test directory
+    backup_directory = "C:\\Users\\James Simmill\\Desktop\\BackupCopy"  # Separate backup directory
     log_file = "duplicate_files_log.txt"
 
     logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
