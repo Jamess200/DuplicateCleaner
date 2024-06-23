@@ -68,6 +68,20 @@ def format_file_info(file_info):
     file_mtime = datetime.fromtimestamp(file_info['mtime']).strftime('%Y-%m-%d %H:%M:%S')
     return [file_path, file_size, file_ctime, file_mtime]
 
+def remove_empty_folders(directory):
+    """Remove empty folders in the specified directory"""
+    for dirpath, dirnames, filenames in os.walk(directory, topdown=False):
+        for dirname in dirnames:
+            folder_path = os.path.join(dirpath, dirname)
+            if not os.listdir(folder_path):  # Check if the folder is empty
+                try:
+                    os.rmdir(folder_path)
+                    print(f"Removed empty folder: {folder_path}")
+                    logging.info(f"Removed empty folder: {folder_path}")
+                except Exception as e:
+                    print(f"Error removing folder {folder_path}: {e}")
+                    logging.error(f"Error removing folder {folder_path}: {e}")
+
 if __name__ == "__main__":
     directory_to_scan = "C:\\Users\\James Simmill\\Desktop\\TestDup"  # Your test directory
     backup_directory = "C:\\Users\\James Simmill\\Desktop\\BackupCopy"  # Separate backup directory
@@ -96,7 +110,12 @@ if __name__ == "__main__":
         user_input = input("\nDo you want to delete all the above files? (yes/no): ").strip().lower()
         if user_input == 'yes':
             delete_files(duplicates)
+            # Remove empty folders after deletion
+            remove_empty_folders(directory_to_scan)
         else:
             print("Deletion aborted.")
     else:
         print("No duplicate files found.")
+
+    # Optionally, remove empty folders even if no duplicates were found
+    remove_empty_folders(directory_to_scan)
