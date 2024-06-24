@@ -7,11 +7,15 @@ from tabulate import tabulate
 
 def get_file_hash(file_path):
     """Generate a hash for a file"""
-    hash_algo = hashlib.md5()
-    with open(file_path, 'rb') as f:
-        for chunk in iter(lambda: f.read(4096), b""):
-            hash_algo.update(chunk)
-    return hash_algo.hexdigest()
+    hash_algo = hashlib.md5()  # Initialize the MD5 hash algorithm
+    with open(file_path, 'rb') as f:  # Open the file in binary read mode
+        while True:
+            chunk = f.read(4096)  # Read the file in chunks of 4096 bytes
+            if not chunk:
+                break  # Exit the loop if the chunk is empty (end of file)
+            hash_algo.update(chunk)  # Update the hash with each chunk
+    return hash_algo.hexdigest()  # Return the hexadecimal digest of the hash
+
 
 def find_duplicates(directory):
     """Find duplicate files in a directory and keep the most recent one"""
