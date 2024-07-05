@@ -87,8 +87,8 @@ def remove_empty_folders(directory):
                     logging.error(f"Error removing folder {folder_path}: {e}")
 
 if __name__ == "__main__":
-    directory_to_scan = "C:\\Users\\James Simmill\\Desktop\\TestDup"  # Your test directory
-    backup_directory = "C:\\Users\\James Simmill\\Desktop\\BackupCopy"  # Separate backup directory
+    directory_to_scan = "C:\\Users\\James\\Desktop\\TestDup"  # Your test directory
+    backup_directory = "C:\\Users\\James\\Desktop\\BackupCopy"  # Separate backup directory
     log_file = "duplicate_files_log.txt"
 
     logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
