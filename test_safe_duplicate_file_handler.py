@@ -7,7 +7,7 @@ from tabulate import tabulate
 
 def get_file_hash(file_path):
     """Generate a hash for a file"""
-    hash_algo = hashlib.md5()  # Initialize the MD5 hash algorithm
+    hash_algo = hashlib.md5()  # Initialise the MD5 hash algorithm
     with open(file_path, 'rb') as f:  # Open the file in binary read mode
         while True:
             chunk = f.read(4096)  # Read the file in chunks of 4096 bytes
